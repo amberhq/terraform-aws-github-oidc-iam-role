@@ -13,7 +13,7 @@ variable "thumbprint_list" {
   type        = list(string)
   description = "GitHub OIDC Issuer thumbprints"
   default     = [
-    "40a7f38766174b05ed508887745115475b89535174957bae5c8445191db9e747"
+    "25768713d3b459f9382d2a594f85f34709fd2a8930731542a4146ffb246bec69"
   ]
 }
 

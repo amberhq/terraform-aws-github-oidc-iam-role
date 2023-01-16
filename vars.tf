@@ -9,11 +9,13 @@ variable "max_session_duration" {
   default     = "3600"
 }
 
+# https://github.com/hashicorp/terraform-provider-aws/issues/28916
 variable "thumbprint_list" {
   type        = list(string)
   description = "GitHub OIDC Issuer thumbprints"
   default     = [
-    "25768713d3b459f9382d2a594f85f34709fd2a8930731542a4146ffb246bec69"
+    # From https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
+    "6938fd4d98bab03faadb97b34396831e3780aea1"
   ]
 }
 

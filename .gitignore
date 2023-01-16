@@ -33,4 +33,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+*.tfplan
+
 .idea/

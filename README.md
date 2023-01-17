@@ -10,8 +10,7 @@ For more information about security hardening your tokens, see [About security h
 
 ```terraform
 module "github_oidc_role" {
-  source                     = "niraj8/github-oidc-iam-role/aws"
-  version                    = "x.x.x"
+  source                     = "github.com/amberhq/terraform-aws-github-oidc-iam-role.git?ref=<tag>"
   iam_role_name              = "github-org-oidc"
   oidc_assume_role_condition = "repo:<github-org-name-here>/*:*"
 }
@@ -21,8 +20,7 @@ module "github_oidc_role" {
 
 ```terraform
 module "github_oidc_role" {
-  source                     = "niraj8/github-oidc-iam-role/aws"
-  version                    = "x.x.x"
+  source                     = "github.com/amberhq/terraform-aws-github-oidc-iam-role.git?ref=<tag>"
   iam_role_name              = "github-repo-main-oidc"
   oidc_assume_role_condition = "repo:<github-org-name-here>/<repository>:refs/head/main"
 }

@@ -1,6 +1,6 @@
 locals {
   identity_oidc_issuer = "token.actions.githubusercontent.com"
-  client_id = "sts.amazonaws.com"
+  client_id            = "sts.amazonaws.com"
 }
 
 data "aws_caller_identity" "current_account" {}
@@ -17,8 +17,10 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
     actions = ["sts:AssumeRoleWithWebIdentity"]
 
     principals {
-      type        = "Federated"
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current_account.account_id}:oidc-provider/${local.identity_oidc_issuer}"]
+      type = "Federated"
+      identifiers = [
+        "arn:aws:iam::${data.aws_caller_identity.current_account.account_id}:oidc-provider/${local.identity_oidc_issuer}"
+      ]
     }
 
     condition {
@@ -39,4 +41,10 @@ resource "aws_iam_role" "oidc" {
   name                 = var.iam_role_name
   assume_role_policy   = data.aws_iam_policy_document.github_oidc_assume_role.json
   max_session_duration = var.max_session_duration
+}
+
+resource "aws_iam_role_policy_attachment" "custom" {
+  count      = length(var.role_policy_arns)
+  role       = aws_iam_role.oidc.name
+  policy_arn = var.role_policy_arns[count.index]
 }

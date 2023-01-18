@@ -40,6 +40,7 @@ module "github_oidc_role" {
 | <a name="input_iam_role_name"></a> [iam_role_name](#input_iam_role_name) | IAM role name | `string` | n/a | yes |
 | <a name="input_oidc_assume_role_condition"></a> [oidc_assume_role_condition](#input_oidc_assume_role_condition) | Assume role condition for OIDC role | `string` | n/a | yes |
 | <a name="input_max_session_duration"></a> [max_session_duration](#input_max_session_duration) | Max Session Duration for assumed role in seconds | `string` | `"3600"` | no |
+| <a name="input_role_policy_arns"></a> [role_policy_arns](#input_role_policy_arns) | List of ARNs of IAM policies to attach to the IAM role | `list(string)` | `[]` | no |
 | <a name="input_thumbprint_list"></a> [thumbprint_list](#input_thumbprint_list) | GitHub OIDC Issuer thumbprints | `list(string)` | <pre>[<br>  "6938fd4d98bab03faadb97b34396831e3780aea1"<br>]</pre> | no |
 
 #### Outputs
@@ -47,4 +48,5 @@ module "github_oidc_role" {
 | Name | Description |
 |------|-------------|
 | <a name="output_iam_role_arn"></a> [iam_role_arn](#output_iam_role_arn) | IAM role ARN |
+| <a name="output_iam_role_name"></a> [iam_role_name](#output_iam_role_name) | IAM role name |
 <!-- END_TF_DOCS -->

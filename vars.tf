@@ -13,7 +13,7 @@ variable "max_session_duration" {
 variable "thumbprint_list" {
   type        = list(string)
   description = "GitHub OIDC Issuer thumbprints"
-  default     = [
+  default = [
     # From https://github.blog/changelog/2022-01-13-github-actions-update-on-oidc-based-deployments-to-aws/
     "6938fd4d98bab03faadb97b34396831e3780aea1"
   ]
@@ -23,4 +23,10 @@ variable "thumbprint_list" {
 variable "oidc_assume_role_condition" {
   type        = string
   description = "Assume role condition for OIDC role"
+}
+
+variable "role_policy_arns" {
+  type        = list(string)
+  description = "List of ARNs of IAM policies to attach to the IAM role"
+  default     = []
 }

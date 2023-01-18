@@ -6,21 +6,24 @@ Terraform module to create GitHub OIDC IAM role.
 
 For more information about security hardening your tokens, see [About security hardening with OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect#example-subject-claims) 
  
-### Allow all repositories in your organization to use this role
 
+- Allow all repositories in your organization to use this role and allow the role `ReadOnlyAccess` to the account resources
 ```terraform
 module "github_oidc_role" {
-  source                     = "github.com/amberhq/terraform-aws-github-oidc-iam-role.git?ref=<tag>"
+  source                     = "amberhq/github-oidc-iam-role/aws"
+  version                    = "x.x.x"
   iam_role_name              = "github-org-oidc"
   oidc_assume_role_condition = "repo:<github-org-name-here>/*:*"
+  role_policy_arns           = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
 }
 ```
 
-### Allow role to be assumed only by specific repository on a specific branch(example: main)
+- Allow role to be assumed only by specific repository on a specific branch(example: main)
 
 ```terraform
 module "github_oidc_role" {
-  source                     = "github.com/amberhq/terraform-aws-github-oidc-iam-role.git?ref=<tag>"
+  source                     = "amberhq/github-oidc-iam-role/aws"
+  version                    = "x.x.x"
   iam_role_name              = "github-repo-main-oidc"
   oidc_assume_role_condition = "repo:<github-org-name-here>/<repository>:refs/head/main"
 }

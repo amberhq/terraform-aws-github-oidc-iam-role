@@ -29,20 +29,6 @@ data "aws_iam_policy_document" "oidc_additional_permissions" {
       "arn:aws:s3:::elasticbeanstalk-*/*"
     ]
   }
- 
-  statement {
-    sid     = "LambdaPermission"
-    actions = [
-              "lambda:UpdateFunctionCode",
-              "lambda:PublishVersion",
-              "lambda:GetAlias",
-              "lambda:UpdateAlias",
-              "lambda:CreateAlias"
-              ]
-    effect  = "Allow"
-    resources = ["*"]
-  }
-
   statement {
     sid       = "AutoScalingPermission"
     actions   = ["autoscaling:*"]
